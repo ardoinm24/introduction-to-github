@@ -35,12 +35,12 @@ def main():
     while True:
         count += 1
         print("My guess is", guess(self), "for", count, "guess(es)!")
-        if tooHigh:
-            tooHigh(self)
-        if tooLow:
-            tooLow(self)
-        if correct:
-            correct(self)
+        if answer == 'H':
+            game.tooHigh()
+        elif answer == 'L':
+            game.tooLow()
+        elif anwser == 'C':
+            game.correct()
         #guess = int(input('Enter your guess: '))
         #if guess == number:
             #print("You got it in %d tries!" % count)
