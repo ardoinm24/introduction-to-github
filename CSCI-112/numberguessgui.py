@@ -2,50 +2,38 @@
 UNFINISHED CODE
 """
 
-from breezypythongui import EasyFrame
+from breezypythongui import EasyFrame, EasyDialog
+
+
+#class WinnerDialog(EasyDialog):
+
+    #def __init__(self, parent):
+        #EasyDialog.__init__(self, parent, "Game Over")
 
 class NumberGuessGUI(EasyFrame):
-    """View for a counter."""
 
-    def __init__(self):
-        """Sets up the window, label, and buttons."""
-        EasyFrame.__init__(self, title = "Number Guess")
+    def __init__(self, model):
+        EasyFrame.__init__(self, title = "Number Guessing Game")
 
-        # Instance variable to track the count.
-        #self.counter = counter
+        self.addLabel(text = "My Guess", row = 0, column = 0)
+        self.addButton(text = "Correct", row=1, column=0, command = self.correct)
 
-        # A label to displat the count in the first row.
-        self.label = self.addLabel(text = str(self.counter),
-                                   row = 0, column = 0,
-                                   sticky = "NSEW",
-                                   columnspan = 3)
+        self.addButton(text = "Too Low", row=1, column=1, command = self.low)
 
-        # Three command buttons.
-        self.addButton(text = "Decrement",
-                       row = 1, column = 0,
-                       command = self.decrement)
+        self.addButton(text = "Too High", row=1, column=2, command = self.high)
+        #self.popup = WinnerDialog(self)
+        self.model = model
 
-        self.addButton(text = "Reset",
-                       row = 1, column = 1,
-                       command = self.reset)
+        self.count =1
 
-        self.addButton(text = "Increment",
-                       row = 1, column = 2,
-                       command = self.increment)
+    def low(self):
+        self.count+=1
 
+    def high(self):
+        self.count+=1
 
-    # Methods to handle user events.
-    def increment(self):
-        """Increments the counter and updates the display."""
-        self.counter.increment()
-        self.label["text"] = str(self.counter)
-
-    def decrement(self):
-        """Decrements the counter and updates the display."""
-        self.counter.decrement()
-        self.label["text"] = str(self.counter)
-
-    def reset(self):
-        """Resets the counter and updates the display."""
-        self.counter.reset()
-        self.label["text"] = str(self.counter)
+    def correct(self):
+        #WinnerDialog(self)
+        self.messageBox("Game Over", "My guess is % for % guesses" % (self.model.guess(), 99)
+        
+    
